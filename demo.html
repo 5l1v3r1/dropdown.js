@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="dropdown.css">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="dropdown.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      var dd = new window.dropdownjs.Dropdown(150, '#f0f0f0');
+      dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock"]);
+      $(document.body).append(dd.element());
+    });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
