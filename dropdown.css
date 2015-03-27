@@ -73,6 +73,10 @@
   background-color: transparent;
 }
 
+.dropdownjs-menu-container .dropdownjs-preview label {
+  color: #777;
+}
+
 ul.dropdownjs-menu {
   width: 100%;
   margin: 0;

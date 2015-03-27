@@ -2,7 +2,7 @@
   
   var DROPDOWN_HEIGHT = 30;
   var ITEM_HEIGHT = 30;
-  var ANIMATION_DURATION = 300;
+  var ANIMATION_DURATION = 400;
   
   // NAME_FADE_PERCENT represents the fraction of the animation during which
   // the preview fades out and before the menu items start fading in.
