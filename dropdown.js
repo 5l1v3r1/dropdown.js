@@ -54,6 +54,11 @@
     return this._metrics !== null;
   };
   
+  // selected returns the selected index.
+  Dropdown.prototype.selected = function() {
+    return this._selected;
+  };
+  
   // setOptions sets a list of options to show.
   Dropdown.prototype.setOptions = function(list, selected) {
     if (this.isOpen()) {
