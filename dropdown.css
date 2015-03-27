@@ -1,8 +1,8 @@
 .dropdownjs-preview {
-  background-color: white;
+  display: inline-block;
   height: 30px;
-  
   cursor: pointer;
+  text-align: left;
 }
 
 .dropdownjs-preview-content {
@@ -60,6 +60,45 @@
   height: 100%;
 }
 
+.dropdownjs-menu-container {
+  position: absolute;
+  overflow: hidden;
+  text-align: left;
+}
+
+.dropdownjs-menu-container .dropdownjs-preview {
+  position: absolute;
+  left: 0px;
+  pointer-events: none;
+  background-color: transparent;
+}
+
 ul.dropdownjs-menu {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul.dropdownjs-menu li {
+  width: calc(100% - 30px);
+  height: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  list-style-type: none;
+  padding: 0 0 0 30px;
+  margin: 0;
   
+  color: #777;
+  cursor: pointer;
+}
+
+ul.dropdownjs-menu li.checked {
+  background-image: url('check.png');
+  background-repeat: no-repeat;
+  background-position: left left;
+  background-size: 30px 30px;
+}
+
+ul.dropdownjs-menu li:hover {
+  background-color: #f0f0f0;
 }

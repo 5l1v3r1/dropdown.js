@@ -5,12 +5,15 @@
     <script src="dropdown.js"></script>
     <script type="text/javascript">
     $(function() {
-      var dd = new window.dropdownjs.Dropdown(150, '#f0f0f0');
-      dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock"]);
+      var dd = new window.dropdownjs.Dropdown(180, [0xf0/255, 0xf0/255,
+        0xf0/255]);
+      dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
+        '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2']);
       $(document.body).append(dd.element());
     });
     </script>
   </head>
-  <body>
+  <body style="text-align: center; margin: 0; padding: 0">
+    <br /><br /><br /><br />
   </body>
 </html>
