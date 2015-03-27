@@ -10,10 +10,14 @@
       dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
         '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2']);
       $(document.body).append(dd.element());
+      dd.onChange = function() {
+        $('#selected').text(dd.value());
+      };
     });
     </script>
   </head>
   <body style="text-align: center; margin: 0; padding: 0">
+    <label id="selected">Skewb</label>
     <br /><br /><br /><br />
   </body>
 </html>
