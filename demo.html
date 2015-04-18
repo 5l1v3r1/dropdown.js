@@ -5,15 +5,22 @@
     <script src="dropdown.js"></script>
     <script type="text/javascript">
     $(function() {
-      var dd = new window.dropdownjs.Dropdown(180, [0xf0/255, 0xf0/255,
-        0xf0/255]);
-      dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
-        '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2', 'This is a long option',
-        'This option is even longer']);
-      $(document.body).append(dd.element());
-      dd.onChange = function() {
-        $('#selected').text(dd.value());
-      };
+      var heights = [30, 29, 28, 27, 26, 25];
+      var fontSizes = [18, 17, 17, 17, 17, 17];
+      for (var i = 0; i < heights.length; ++i) {
+        var height = heights[i];
+        var fontSize = fontSizes[i];
+        var dd = new window.dropdownjs.Dropdown(180, [0xf0/255, 0xf0/255,
+          0xf0/255], height, fontSize);
+        dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
+          '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2', 'This is a long option',
+          'This option is even longer']);
+        $(document.body).append(dd.element());
+        $(document.body).append($('<span>&nbsp;</span>'));
+        dd.onChange = function() {
+          $('#selected').text(dd.value());
+        };
+      }
     });
     </script>
   </head>
