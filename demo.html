@@ -7,25 +7,30 @@
     $(function() {
       var heights = [30, 29, 28, 27, 26, 25];
       var fontSizes = [18, 17, 17, 17, 17, 17];
+      var gray = [0xf0/255, 0xf0/255, 0xf0/255];
+      var dropdowns = [];
       for (var i = 0; i < heights.length; ++i) {
-        var height = heights[i];
-        var fontSize = fontSizes[i];
-        var dd = new window.dropdownjs.Dropdown(180, [0xf0/255, 0xf0/255,
-          0xf0/255], height, fontSize);
-        dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
-          '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2', 'This is a long option',
-          'This option is even longer']);
-        $(document.body).append(dd.element());
-        $(document.body).append($('<span>&nbsp;</span>'));
-        dd.onChange = function() {
-          $('#selected').text(dd.value());
-        };
+        (function(height, fontSize) {
+          var dd = new window.dropdownjs.Dropdown(180, gray, height, fontSize);
+          dd.setOptions(['Skewb', '3x3x3', "Rubik's Clock", 'Feliks',
+            '4x4x4', '5x5x5', '6x6x6', '7x7x7', '2x2x2',
+            'This is a long option', 'This option is even longer']);
+          $(document.body).append(dd.element());
+          $(document.body).append($('<span>&nbsp;</span>'));
+          dd.onChange = function() {
+            $('#selected').text(dd.value());
+            for (var j = 0; j < dropdowns.length; ++j) {
+              dropdowns[j].setSelected(dd.selected());
+            }
+          };
+          dropdowns.push(dd);
+        })(heights[i], fontSizes[i]);
       }
     });
     </script>
   </head>
   <body style="text-align: center; margin: 0; padding: 0">
-    <label id="selected">Skewb</label>
+    Current option: <label id="selected">Skewb</label>
     <br /><br /><br /><br />
   </body>
 </html>
