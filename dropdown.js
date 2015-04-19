@@ -1,16 +1,19 @@
 (function() {
   
+  var DEFAULT_BG_COLOR = [1, 1, 1];
   var DEFAULT_DROPDOWN_HEIGHT = 30;
   var DEFAULT_FONT_HEIGHT_RATIO = 18/30;
   var PAGE_MARGIN = 10;
   
   // A Dropdown generates and controls the elements involved with a dropdown.
   function Dropdown(width, bgcolor, height, fontSize) {
-    // This information can be changed as elements are modified or selected.
+    bgcolor = bgcolor || DEFAULT_BG_COLOR;
+    
+    // This state can be changed later.
     this._optionNames = [];
     this._selected = 0;
+    
     this._width = width;
-    this._bgColor = bgcolor || [1, 1, 1];
     this._height = height || DEFAULT_DROPDOWN_HEIGHT;
     this._fontSize = fontSize || Math.round(DEFAULT_FONT_HEIGHT_RATIO *
       this._height);
@@ -24,21 +27,20 @@
     // This callback is used while the dropdown is showing.
     this._resizeCallback = this._resize.bind(this);
     
-    // Generate the preview element to show to the user before they click.
     this._label = $('<label></label>').css({
       height: this._height,
       fontSize: this._fontSize + 'px',
       lineHeight: this._height + 'px'
     });
-    this._arrow = $('<div></div>');
+    var arrow = $('<div class="arrow"></div>').css({
+      marginTop: Math.ceil((this._height - 10) / 2),
+    });
     this._preview = $('<div class="dropdownjs-preview"></div>').css({
       width: width,
       height: this._height,
-      backgroundColor: colorToHTML(this._bgColor)
+      backgroundColor: colorToHTML(bgcolor)
     });
-    var content = $('<div class="dropdownjs-preview-content"></div>');
-    content.append([this._label, this._arrow]);
-    this._preview.append(content);
+    this._preview.append([this._label, arrow]);
     this._preview.click(this.show.bind(this));
     
     // Generate the shielding element.
