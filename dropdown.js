@@ -1,4 +1,4 @@
-// dropdown.js version 1.0.0
+// dropdown.js version 2.0.0
 (function() {
 
   var DEFAULT_BG_COLOR = '#ffffff';
@@ -120,8 +120,8 @@
     this._menu.setSelected(idx);
   };
 
-  // setSelectedValue selects an index in the dropdown given its name.
-  Dropdown.prototype.setSelectedValue = function(value) {
+  // setValue selects an index in the dropdown given its name.
+  Dropdown.prototype.setValue = function(value) {
     var idx = this._optionNames.indexOf(value);
     if (idx >= 0) {
       this.setSelected(idx);

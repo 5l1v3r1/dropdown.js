@@ -41,7 +41,7 @@ Once you have an instance of *Dropdown*, you can use the following functions on 
  * open() - if the dropdown was not open, open it.
  * setOptions(list, [selected]) - set the options (an array of strings) for the dropdown. The optional selected argument indicates the index of the option to select. If this is not specified, the first option is selected.
  * setSelected(index) - select the option at the selected index.
- * setSelectedValue(value) - select the option with a given string value.
+ * setValue(value) - select the option with a given string value.
 
 # LICENSE
 
