@@ -10,7 +10,7 @@ This depends on [jQuery](https://jquery.com). You must include the jQuery source
 
 In order to use dropdown.js in your project, copy this directory into your project. Then import the various components in your HTML. This should look something like this:
 
-```javascript
+```html
 <link rel="stylesheet" type="text/css" href="dropdownjs/dropdown.css">
 <script src="dropdownjs/dropdown.js"></script>
 ```
