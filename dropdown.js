@@ -1,3 +1,4 @@
+// Dropdown.js version 1.0.0
 (function() {
 
   var DEFAULT_BG_COLOR = [1, 1, 1];
@@ -42,19 +43,37 @@
     this._menu.onChange = this._handleSelectionChange.bind(this);
   }
 
-  // element returns an HTML element which can be displayed for the dropdown.
-  Dropdown.prototype.element = function() {
+  // getElement returns an HTML element which can be displayed for the dropdown.
+  Dropdown.prototype.getElement = function() {
     return this._preview[0];
   };
 
-  // fontSize returns the font size used by the dropdown.
-  Dropdown.prototype.fontSize = function() {
+  // getFontSize returns the font size used by the dropdown.
+  Dropdown.prototype.getFontSize = function() {
     return this._fontSize
   };
 
-  // height returns the height of the dropdown.
-  Dropdown.prototype.height = function() {
+  // getHeight returns the height of the dropdown.
+  Dropdown.prototype.getHeight = function() {
     return this._height;
+  };
+  
+  // getSelected returns the selected index.
+  Dropdown.prototype.getSelected = function() {
+    return this._selected;
+  };
+  
+  // getValue returns the name of the selected element.
+  Dropdown.prototype.getValue = function() {
+    if (this._optionNames.length === 0) {
+      return '';
+    }
+    return this._optionNames[this._selected];
+  };
+
+  // getWidth returns the width of the dropdown.
+  Dropdown.prototype.getWidth = function() {
+    return this._width;
   };
 
   // hide closes the dropdown if it was open.
@@ -65,11 +84,6 @@
   // isOpen returns true if the dropdown is open.
   Dropdown.prototype.isOpen = function() {
     return this._menu.isShowing();
-  };
-
-  // selected returns the selected index.
-  Dropdown.prototype.selected = function() {
-    return this._selected;
   };
 
   // setOptions sets a list of options to show.
@@ -114,19 +128,6 @@
       return;
     }
     this._menu.show();
-  };
-
-  // value returns the name of the selected element.
-  Dropdown.prototype.value = function() {
-    if (this._optionNames.length === 0) {
-      return '';
-    }
-    return this._optionNames[this._selected];
-  };
-
-  // width returns the width of the dropdown.
-  Dropdown.prototype.width = function() {
-    return this._width;
   };
 
   Dropdown.prototype._handleSelectionChange = function(idx) {
@@ -181,12 +182,12 @@
   Menu.prototype.setOptions = function(list) {
     this._menu.empty();
     this._options = $();
-    var rowHeight = this._dropdown.height();
+    var rowHeight = this._dropdown.getHeight();
     for (var i = 0, len = list.length; i < len; ++i) {
       var optionElement = $('<li></li>').css({
         height: rowHeight,
         lineHeight: rowHeight + 'px',
-        fontSize: this._dropdown.fontSize() + 'px',
+        fontSize: this._dropdown.getFontSize() + 'px',
         backgroundSize: rowHeight + 'px ' + rowHeight + 'px'
       }).text(list[i]);
       this._options = this._options.add(optionElement);
@@ -213,7 +214,7 @@
     }
     this._showing = true;
 
-    this._changeTracker = new ChangeTracker(this._dropdown.element(),
+    this._changeTracker = new ChangeTracker(this._dropdown.getElement(),
       this._relayout.bind(this));
     this._layout();
 
@@ -239,9 +240,9 @@
 
     var left = state.elementLeft;
     var top = 0;
-    var width = this._dropdown.width() + extraWidth;
+    var width = this._dropdown.getWidth() + extraWidth;
     var height = 0;
-    var contentHeight = this._options.length * this._dropdown.height();
+    var contentHeight = this._options.length * this._dropdown.getHeight();
 
     if (width + left > state.bodyWidth) {
       left -= extraWidth;
@@ -252,9 +253,9 @@
         contentHeight);
       top = state.elementTop;
     } else {
-      height = Math.min(contentHeight, this._dropdown.height() +
+      height = Math.min(contentHeight, this._dropdown.getHeight() +
         state.elementTop - PAGE_MARGIN);
-      top = state.elementTop + this._dropdown.height() - height;
+      top = state.elementTop + this._dropdown.getHeight() - height;
     }
 
     this._container.css({
@@ -266,12 +267,12 @@
   };
 
   Menu.prototype._shouldOpenDown = function() {
-    var dropdownHeight = this._dropdown.height();
+    var dropdownHeight = this._dropdown.getHeight();
 
     var state = this._changeTracker.getState();
-    var minimumDownHeight = DOWN_MINIMUM_ITEMS*this._dropdown.height();
+    var minimumDownHeight = DOWN_MINIMUM_ITEMS*this._dropdown.getHeight();
 
-    var upwardsSpace = state.elementTop + this._dropdown.height();
+    var upwardsSpace = state.elementTop + this._dropdown.getHeight();
     var downwardsSpace = state.bodyHeight - state.elementTop;
 
     return downwardsSpace - PAGE_MARGIN >= minimumDownHeight ||

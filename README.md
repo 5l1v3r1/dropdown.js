@@ -1,6 +1,6 @@
 # dropdown.js
 
-This will be a nice, beautiful dropdown UI component for websites. It is uncompleted as of yet.
+This is a nice, beautiful dropdown UI component for websites. It is uncompleted as of yet.
 
 # LICENSE
 
