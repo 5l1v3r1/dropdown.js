@@ -2,6 +2,47 @@
 
 This is a nice, beautiful dropdown UI component for websites. It is uncompleted as of yet.
 
+# Dependencies
+
+This depends on [jQuery](https://jquery.com). You must include the jQuery source code before using dropdown.js.
+
+# Usage
+
+In order to use dropdown.js in your project, copy this directory into your project. Then import the various components in your HTML. This should look something like this:
+
+```javascript
+<link rel="stylesheet" type="text/css" href="dropdownjs/dropdown.css">
+<script src="dropdownjs/dropdown.js"></script>
+```
+
+You can create a dropdown using the Dropdown constructor:
+
+```javascript
+new window.dropdownjs.Dropdown(width, [bgcolor, [height, [fontSize]]])
+```
+
+If you supply a falsy value for an optional argument, it will be set to its default value. Here is the meaning of each argument:
+
+ * **width** - number - the width in pixels of the dropdown
+ * **bgcolor** - string - default **#ffffff** - the CSS background color for the dropdown
+ * **height** - number - default **30** - the height in pixels of the dropdown
+ * **fontSize** - number - default **height \* 18/30** - the font size to use throughout the dropdown
+
+Once you have an instance of *Dropdown*, you can use the following functions on it:
+
+ * close() - if the dropdown was open, close it.
+ * getElement() - returns the HTML DOM node which represents the dropdown. You can append this to your webpage in order to display the dropdown. By default, it will behave as an `inline-block` element
+ * getFontSize() - get the font size in pixels.
+ * getHeight() - get the height of the dropdown in pixels.
+ * getSelected() - get the index of the selected item. If there are no options, this will always be 0.
+ * getValue() - get the string value of the selected item. If there are no options, this will always be the empty string.
+ * getWidth() - get the width of the dropdown in pixels.
+ * isOpen() - get a boolean indicating whether or not the dropdown is open.
+ * open() - if the dropdown was not open, open it.
+ * setOptions(list, [selected]) - set the options (an array of strings) for the dropdown. The optional selected argument indicates the index of the option to select. If this is not specified, the first option is selected.
+ * setSelected(index) - select the option at the selected index.
+ * setSelectedValue(value) - select the option with a given string value.
+
 # LICENSE
 
 ```

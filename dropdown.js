@@ -1,7 +1,7 @@
-// Dropdown.js version 1.0.0
+// dropdown.js version 1.0.0
 (function() {
 
-  var DEFAULT_BG_COLOR = [1, 1, 1];
+  var DEFAULT_BG_COLOR = '#ffffff';
   var DEFAULT_DROPDOWN_HEIGHT = 30;
   var DEFAULT_FONT_HEIGHT_RATIO = 18/30;
   var DOWN_MINIMUM_ITEMS = 4;
@@ -10,8 +10,6 @@
 
   // A Dropdown generates and controls the elements involved with a dropdown.
   function Dropdown(width, bgcolor, height, fontSize) {
-    bgcolor = bgcolor || DEFAULT_BG_COLOR;
-
     // This state can be changed later.
     this._optionNames = [];
     this._selected = 0;
@@ -34,14 +32,19 @@
     this._preview = $('<div class="dropdownjs-preview"></div>').css({
       width: width,
       height: this._height,
-      backgroundColor: colorToHTML(bgcolor)
+      backgroundColor: bgcolor || DEFAULT_BG_COLOR
     });
     this._preview.append([this._label, arrow]);
-    this._preview.click(this.show.bind(this));
+    this._preview.click(this.open.bind(this));
 
     this._menu = new Menu(this);
     this._menu.onChange = this._handleSelectionChange.bind(this);
   }
+
+  // close closes the dropdown if it was open.
+  Dropdown.prototype.close = function() {
+    this._menu.hide();
+  };
 
   // getElement returns an HTML element which can be displayed for the dropdown.
   Dropdown.prototype.getElement = function() {
@@ -57,12 +60,12 @@
   Dropdown.prototype.getHeight = function() {
     return this._height;
   };
-  
+
   // getSelected returns the selected index.
   Dropdown.prototype.getSelected = function() {
     return this._selected;
   };
-  
+
   // getValue returns the name of the selected element.
   Dropdown.prototype.getValue = function() {
     if (this._optionNames.length === 0) {
@@ -76,14 +79,17 @@
     return this._width;
   };
 
-  // hide closes the dropdown if it was open.
-  Dropdown.prototype.hide = function() {
-    this._menu.hide();
-  };
-
   // isOpen returns true if the dropdown is open.
   Dropdown.prototype.isOpen = function() {
     return this._menu.isShowing();
+  };
+
+  // open opens the dropdown if it was not already open.
+  Dropdown.prototype.open = function() {
+    if (this._optionNames.length === 0) {
+      return;
+    }
+    this._menu.show();
   };
 
   // setOptions sets a list of options to show.
@@ -120,14 +126,6 @@
     if (idx >= 0) {
       this.setSelected(idx);
     }
-  };
-
-  // show opens the dropdown if it was not already open.
-  Dropdown.prototype.show = function() {
-    if (this._optionNames.length === 0) {
-      return;
-    }
-    this._menu.show();
   };
 
   Dropdown.prototype._handleSelectionChange = function(idx) {
@@ -377,11 +375,6 @@
     this._checkInterval = setInterval(this._check.bind(this),
       ChangeTracker.SLOW_INTERVAL);
   };
-
-  function colorToHTML(color) {
-    return 'rgba(' + Math.floor(color[0]*255) + ', ' +
-      Math.floor(color[1]*255) + ', ' + Math.floor(color[2]*255) + ', 1)';
-  }
 
   function scrollbarWidth() {
     // Generate a small scrolling element.
