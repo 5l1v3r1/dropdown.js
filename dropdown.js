@@ -1,4 +1,4 @@
-// dropdown.js version 2.0.0
+// dropdown.js version 3.0.0
 (function() {
 
   var DEFAULT_BG_COLOR = '#ffffff';
@@ -46,8 +46,8 @@
     this._menu.hide();
   };
 
-  // getElement returns an HTML element which can be displayed for the dropdown.
-  Dropdown.prototype.getElement = function() {
+  // element returns an HTML element which can be displayed for the dropdown.
+  Dropdown.prototype.element = function() {
     return this._preview[0];
   };
 
@@ -212,7 +212,7 @@
     }
     this._showing = true;
 
-    this._changeTracker = new ChangeTracker(this._dropdown.getElement(),
+    this._changeTracker = new ChangeTracker(this._dropdown.element(),
       this._relayout.bind(this));
     this._layout();
 

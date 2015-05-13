@@ -31,7 +31,7 @@ If you supply a falsy value for an optional argument, it will be set to its defa
 Once you have an instance of *Dropdown*, you can use the following functions on it:
 
  * close() - if the dropdown was open, close it.
- * getElement() - returns the HTML DOM node which represents the dropdown. You can append this to your webpage in order to display the dropdown. By default, it will behave as an `inline-block` element
+ * element() - returns the HTML DOM node which represents the dropdown. You can append this to your webpage in order to display the dropdown. By default, it will behave as an `inline-block` element
  * getFontSize() - get the font size in pixels.
  * getHeight() - get the height of the dropdown in pixels.
  * getSelected() - get the index of the selected item. If there are no options, this will always be 0.
